@@ -1,21 +1,7 @@
 import React from 'react'
 
-const Tarjeta = () => {
-    const elemento = {
-        "id": 3,
-        "created_at": "2022-11-28T18:59:02.000000Z",
-        "updated_at": "2022-11-28T18:59:02.000000Z",
-        "solicitud": "Urgente",
-        "creado_por": 15,
-        "fecha_limite": "2020-08-26",
-        "id_estado": 1,
-        "volumenes_necesarios": 2,
-        "nombre_apellido_donatario": "Norman Osborn ",
-        "cedula_donatario": "28738",
-        "telefono_contacto": "09290384",
-        "tipo_sangre": 4,
-        "establecimiento": "FCA - CAMPUS UNP"
-    }
+const Tarjeta = ({elemento}) => {
+   
   return (
     <div className="col">
       <div className="card shadow bg-white rounded-4 mb-2">
