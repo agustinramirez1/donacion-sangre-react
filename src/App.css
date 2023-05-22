@@ -1,0 +1,59 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bg-sky-blue {
+  background-color: skyblue;
+}
+
+i:hover {
+  background: #dadada;
+  width: 30px;
+  border-radius: 4px;
+}
+
+#boton-plus:hover {
+  background: rgb(97, 192, 230);
+}
+#boton-plus {
+  border-radius:0 inherit 0 0 !important;
+  cursor: pointer;
+}
+
+.icon-plus:hover {
+  background: rgb(97, 192, 230);;
+}
+
+.img {
+  width: 100px;
+}
+
+.icono-sangre {
+  width: 35px;
+  height: 35px;
+}
