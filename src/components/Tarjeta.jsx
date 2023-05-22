@@ -1,4 +1,6 @@
 import React from 'react'
+import ShareButton from './ShareButton'
+import DeleteButton from './DeleteButton'
 
 const Tarjeta = ({elemento}) => {
    
@@ -8,8 +10,8 @@ const Tarjeta = ({elemento}) => {
         <div className="d-flex justify-content-between align-items-center mb-3 border-bottom p-3">
           <p><strong>{elemento.nombre_apellido_donatario}</strong></p>
           <p className="fs-5">
-            <i className="bi bi-trash mx-2 text-danger"></i>
-            <i className="bi bi-box-arrow-up"></i>
+            <DeleteButton/>
+            <ShareButton/>
           </p>
         </div>
       
