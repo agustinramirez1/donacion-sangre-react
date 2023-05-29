@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Titulo from '../components/Titulo'
 import Contenido from '../components/Contenido'
 

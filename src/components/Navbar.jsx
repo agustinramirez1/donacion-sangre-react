@@ -1,4 +1,3 @@
-import React from 'react'
 import Botones from './Botones'
 
 const Navbar = () => {
