@@ -1,11 +1,17 @@
+import { useNavigate } from 'react-router-dom'
 import Botones from './Botones'
 
 const Navbar = () => {
 
     const links = [
         { text: 'Solicitudes', url: '/solicitudes' },
-        { text: 'Puntos de Donación', url: '/puntodonacion' }
+        { text: 'Puntos de Donación', url: '/puntosdonacion' }
     ]
+
+    const navigate = useNavigate()
+    const navegar = () => {
+        navigate('/login')
+    }
     return (
         <nav className='navbar-tukp'>
             <div className='container navbar-flex'>
@@ -25,8 +31,11 @@ const Navbar = () => {
 
                 </div>
                 <div>
-                    <Botones color={"white"} text={"No funca kp"} background={'transparent'} border={'transparent'}/>
-                    <Botones color={"skyblue"} text={"Este menos"} background={'white'} border={'transparent'}/>
+                    <div>
+                        <Botones color={"white"} text={"Login"} background={'transparent'} border={'transparent'} icon={'bi bi-person-fill'} iconPosition={'start'} onClick={navegar}/>
+                        <Botones color={"skyblue"} text={"No funca"} background={'white'} border={'transparent'}/>
+                    </div>
+                    
                 </div>
             </div>
         </nav>

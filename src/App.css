@@ -7,10 +7,16 @@
   background-color: skyblue;
 }
 
-i:hover {
-  background: #dadada;
-  width: 30px;
-  border-radius: 4px;
+#inicio-sesion:hover {
+  background: rgb(48, 161, 206);
+}
+
+#boton-login:hover {
+  opacity: .4;
+}
+
+.text-skyblue {
+  color: rgb(64, 181, 228);
 }
 
 #boton-plus:hover {
@@ -49,6 +55,7 @@ i:hover {
   margin: 0;
   padding: 0;
 }
+
 
 .navbar-flex {
   display: flex;
