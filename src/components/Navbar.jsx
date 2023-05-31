@@ -5,7 +5,8 @@ const Navbar = () => {
 
     const links = [
         { text: 'Solicitudes', url: '/solicitudes' },
-        { text: 'Puntos de Donación', url: '/puntosdonacion' }
+        { text: 'Puntos de Donación', url: '/puntosdonacion' },
+        { text: 'Certificados', url: '/certificados' }
     ]
 
     const navigate = useNavigate()

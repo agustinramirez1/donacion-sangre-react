@@ -1,14 +1,8 @@
-import React from 'react'
+// import React from 'react'
+import { Link } from 'react-router-dom';
 import FiltroSolicitud from './FiltroSolicitud'
-import axios from 'axios'
 
-const Titulo = ({setSolicitudes}) => {
-
-  const callSolicitudes = () => {
-    axios.get("http://192.168.16.90:8000/api/solicitudes").then((response) => {
-      setSolicitudes(response.data.data)
-    });
-  }
+const Titulo = ({  icon, href}) => {
 
     return (
       <>
@@ -16,12 +10,11 @@ const Titulo = ({setSolicitudes}) => {
           <div className="col-11 text-white fs-4" >
             <span>Solicitudes</span>
           </div>
-          <div id="boton-plus"
-            className="rounded-top-4 rounded-start-0 col-1 d-flex justify-content-center text-white fs-3 icon" onClick={callSolicitudes}>
+          {icon && <Link to={href} id="boton-plus"
+            className="rounded-top-4 rounded-start-0 col-1 d-flex justify-content-center text-white fs-3 icon" >
             +
-          </div>
+          </Link>}
         </div>
-        
         <FiltroSolicitud/>
       </>
 

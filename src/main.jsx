@@ -7,6 +7,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Login from './views/Login.jsx'
 import Registro from './components/Login/Registro.jsx'
 import PuntoDonacion from './views/PuntoDonacion.jsx'
+import Certificados from './views/Certificados.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
       <Route path={'/puntosdonacion'} element={<PuntoDonacion />} />
       <Route path={'/login'} element={<Login />} />
       <Route path={'/registro'} element={<Registro />} />
+      <Route path={'/certificados'} element={<Certificados />} />
       <Route path="*" element={<p className='text-center fs-1 my-auto'>404 Path not resolved</p>} />
     </Route>
   )

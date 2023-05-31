@@ -1,8 +1,11 @@
-import React from 'react'
+// import React from 'react'
 import ShareButton from './ShareButton'
 import DeleteButton from './DeleteButton'
 
 const Tarjeta = ({elemento}) => {
+
+  let tipo_sangre = ["A+", "A-", "B+", "B-", "O+", "O-", "AB-", "AB+"];
+      let source = "./src/img/" + tipo_sangre[elemento.tipo_sangre - 1] + ".png";
    
   return (
     <div className="col">
@@ -30,7 +33,7 @@ const Tarjeta = ({elemento}) => {
           </p>
           <p className="d-flex justify-content-between">
             <span>RH: </span>
-            <img src="A+.png" className="icono-sangre"></img>
+            <img src={source} className="icono-sangre"></img>
           </p>
       
           <p className="d-flex justify-content-between">
