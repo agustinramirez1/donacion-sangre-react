@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 
 const Botones = ({ background, text, outlined, color, icon, disabled, iconPosition, border, link, textDecoration, onClick }) => {
 
@@ -12,7 +12,7 @@ const Botones = ({ background, text, outlined, color, icon, disabled, iconPositi
     }
 
     return (
-        <button style={style} className='mx-4' onClick={onClick}>
+        <button style={style} className='mx-1' onClick={onClick}>
             {(icon && iconPosition== 'start') && <i className={icon + " me-2"}></i>}
             {text}
             {(icon && (iconPosition== 'end' || iconPosition == null)) && <i className={icon + " ms-2"}></i>}

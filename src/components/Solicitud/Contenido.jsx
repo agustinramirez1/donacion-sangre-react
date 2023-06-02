@@ -1,5 +1,5 @@
 // import React from 'react'
-import TarjetaCertificado from './Certificado/TarjetaCertificado'
+import TarjetaCertificado from '../Certificado/TarjetaCertificado'
 import Tarjeta from './Tarjeta'
 
 const Contenido = ({solicitudes, certificados}) => {

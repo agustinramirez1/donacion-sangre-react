@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import Card from './Card'
 import Swal from 'sweetalert2';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Registro = () => {
 
@@ -63,10 +64,10 @@ const Registro = () => {
         let noError = true;
 
         if (isEmpty(nombres)) {
-            Swal.fire({icon: 'error', text: 'Debe cargar al menos un nombre'});
+            Swal.fire({icon: 'error', text: 'Debe cargar un nombre válido'});
             noError = false;
         }else if (isEmpty(apellidos)) {
-            Swal.fire({icon: 'error', text: 'Debe cargar al menos un apellido'});
+            Swal.fire({icon: 'error', text: 'Debe cargar un apellido válido'});
             noError = false
         } else if (isEmpty(cedula)) {
             Swal.fire({icon: 'error', text: 'Debe cargar su C.I'});
@@ -90,11 +91,37 @@ const Registro = () => {
         return noError
     }
 
+    const navigate = useNavigate();
+
     const onSubmitHandler = (event) => {
         event.preventDefault();
 
         if (emptyFields()) {
-            Swal.fire({icon: 'success', text: "Registro Cargado con Éxito"})
+
+            const data = {
+                name: nombres,
+                surname: apellidos,
+                password: contraseña,
+                email,
+                fecha_nacimiento: fecNac,
+                sexo,
+                nro_cedula: cedula
+            }
+
+            axios.post("http://192.168.16.90:8000/api/registro", data)
+                .then((response) => {
+                    console.log(response.data)
+                    navigate("/solicitudes")
+                    localStorage.setItem("token",response.data.token)
+                    Swal.fire({ icon: 'success', text: "Usuario Registrado Correctamente" })
+                }).catch((err) => {
+                    console.log(err)
+                    let message = err.response?.data?.errors;
+
+                    if (message) {
+                        Swal.fire({ icon: 'error', text: "Algo no salió bien" })
+                    }
+                })
           }
     }
 
@@ -133,8 +160,8 @@ const Registro = () => {
                 </div>
                 <div className='mb-3'>
                     <label className="form-label fs-4 fw-bold text-start">Sexo</label>
-                    <select className="form-select" onChange={handleChange} id='sexo'>
-                        <option selected>Seleccionar</option>
+                    <select className="form-select" onChange={handleChange} id='sexo' defaultValue={''}>
+                        <option value={''}>Seleccionar</option>
                         <option value="F">Femenino</option>
                         <option value="M">Masculino</option>
                     </select>

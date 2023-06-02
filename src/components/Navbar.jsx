@@ -10,14 +10,13 @@ const Navbar = () => {
     ]
 
     const navigate = useNavigate()
-    const navegar = () => {
-        navigate('/login')
-    }
+
     return (
         <nav className='navbar-tukp'>
-            <div className='container navbar-flex'>
-                <div>
-                    <img src="https://res.cloudinary.com/dhzoxdo6q/image/upload/v1685025897/Roshka/react-white_hcr6av.png" height={50} />
+            <div className='container-fluid navbar-flex'>
+                <div className='d-flex align-items-center'>
+                    <span className='fs-3 text-white'>Donación de Sangre &nbsp;</span>
+                    <img src="https://cdn-icons-png.flaticon.com/512/1142/1142102.png" height={50} />
                 </div>
 
                 <div className='links'>
@@ -33,10 +32,10 @@ const Navbar = () => {
                 </div>
                 <div>
                     <div>
-                        <Botones color={"white"} text={"Login"} background={'transparent'} border={'transparent'} icon={'bi bi-person-fill'} iconPosition={'start'} onClick={navegar}/>
-                        <Botones color={"skyblue"} text={"No funca"} background={'white'} border={'transparent'}/>
+                        <Botones color={"white"} text={"Registrarse"} background={'transparent'} border={'transparent'} icon={'bi bi-person-plus-fill'} iconPosition={'start'} onClick={()=>navigate('/registro')}/>
+                        <Botones color={"white"} text={"Perfil"} background={'transparent'} border={'transparent'} icon={'bi bi-person-fill'} iconPosition={'start'} onClick={()=>navigate('/perfil')}/>
+                        <Botones color={"skyblue"} text={"Login"} background={'white'} border={'transparent'} onClick={()=>navigate('/login')} icon={'bi bi-box-arrow-in-right'} iconPosition={'start'}/>
                     </div>
-                    
                 </div>
             </div>
         </nav>

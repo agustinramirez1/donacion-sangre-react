@@ -8,6 +8,11 @@ import Login from './views/Login.jsx'
 import Registro from './components/Login/Registro.jsx'
 import PuntoDonacion from './views/PuntoDonacion.jsx'
 import Certificados from './views/Certificados.jsx'
+import NewCertificado from './components/Certificado/NewCertificado.jsx'
+import Perfil from './views/Perfil.jsx'
+import NewSolicitud from './components/Solicitud/NewSolicitud.jsx'
+import ResetPassword from './components/Login/ResetPassword.jsx'
+import EditPerfil from './views/EditPerfil.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +22,11 @@ const router = createBrowserRouter(
       <Route path={'/login'} element={<Login />} />
       <Route path={'/registro'} element={<Registro />} />
       <Route path={'/certificados'} element={<Certificados />} />
+      <Route path={'/generar-certificado'} element={<NewCertificado />} />
+      <Route path={'/perfil'} element={<Perfil />} />
+      <Route path={'/nueva-solicitud'} element={<NewSolicitud />} />
+      <Route path={'/reset-password'} element={<ResetPassword />} />
+      <Route path={'/edit-perfil'} element={<EditPerfil/>} />
       <Route path="*" element={<p className='text-center fs-1 my-auto'>404 Path not resolved</p>} />
     </Route>
   )

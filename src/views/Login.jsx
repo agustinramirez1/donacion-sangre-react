@@ -1,6 +1,6 @@
 // import React from "react";
 import Imagen from "../components/Login/Imagen";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
 import Card from "../components/Login/Card";
 import { useState } from "react";
@@ -46,6 +46,7 @@ const Login = () => {
         .then((response) => {
           console.log(response.data)
           navigate("/solicitudes")
+          localStorage.setItem("token",response.data.token)
         })
         .catch(error => console.log(error))
     }
@@ -67,10 +68,11 @@ const Login = () => {
     return noError
   }
 
+
   return (
     <Card titulo={'Login'} onSubmitHandler={onSubmitHandler}>
       <Imagen />
-      <div className="p-5 col-md-8 mx-auto">
+      <div className="p-4 col-md-8 mx-auto">
         <div className='mb-3'>
           <label htmlFor="email" className="form-label fs-4 fw-bold text-start">Email</label>
           <input type="text" className="form-control" id="email" value={email} onChange={handleEmailChange} />
@@ -91,7 +93,7 @@ const Login = () => {
             No tienes una cuenta? <NavLink to={'/registro'} className={'text-skyblue'}>Registrarse</NavLink>
           </div>
           <div className="pb-3 fs-5">
-            <NavLink className={'text-skyblue'}>Olvidaste tu Contraseña?</NavLink>
+            <Link to={'/reset-password'} className={'text-skyblue'}>Olvidaste tu Contraseña?</Link>
           </div>
         </div>
       </div>

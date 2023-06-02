@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import Card from '../components/Login/Card'
 import axios from 'axios';
-import Contenido from '../components/Contenido';
+import Contenido from '../components/Solicitud/Contenido';
 
-const access_token = '355|CQoIjLk22W2cRYMECEkXqTdImu0MTscUtGqOlgBQ'
+const access_token = localStorage.getItem('token')
 
 const Certificados = () => {
     const [certificados, setCertificados] = useState([])
@@ -16,7 +16,7 @@ const Certificados = () => {
         });
     }, [])
   return (
-    <Card titulo={'Certificados'} icon={true} href={'/new-solicitud'} bgColor={'bg-sky-blue'}>
+    <Card titulo={'Certificados'} icon={true} href={'/generar-certificado'} bgColor={'bg-sky-blue'}>
         <div className='text-center'>
             <h1 className="py-4 fs-1 text-white">Certificados de Donación</h1>
         </div>

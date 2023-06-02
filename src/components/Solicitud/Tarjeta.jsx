@@ -2,22 +2,22 @@
 import ShareButton from './ShareButton'
 import DeleteButton from './DeleteButton'
 
-const Tarjeta = ({elemento}) => {
+const Tarjeta = ({ elemento }) => {
 
   let tipo_sangre = ["A+", "A-", "B+", "B-", "O+", "O-", "AB-", "AB+"];
-      let source = "./src/img/" + tipo_sangre[elemento.tipo_sangre - 1] + ".png";
-   
+  let source = "./src/img/" + tipo_sangre[elemento.tipo_sangre - 1] + ".png";
+
   return (
     <div className="col">
       <div className="card shadow bg-white rounded-4 mb-2">
         <div className="d-flex justify-content-between align-items-center mb-3 border-bottom p-3">
           <p><strong>{elemento.nombre_apellido_donatario}</strong></p>
           <p className="fs-5">
-            <DeleteButton/>
-            <ShareButton/>
+            <DeleteButton />
+            <ShareButton />
           </p>
         </div>
-      
+
         <div className="p-3">
           <p className="d-flex justify-content-between">
             <span>Telefono: </span>
@@ -35,7 +35,7 @@ const Tarjeta = ({elemento}) => {
             <span>RH: </span>
             <img src={source} className="icono-sangre"></img>
           </p>
-      
+
           <p className="d-flex justify-content-between">
             <span>Volumenes: </span>
             <span>{elemento.volumenes_necesarios}</span>
@@ -44,9 +44,9 @@ const Tarjeta = ({elemento}) => {
             <span>Fecha Limite: </span>
             <span>{elemento.fecha_limite}</span>
           </p>
-      
+
           <div className="fs-4 ">
-            <p>{elemento.solicitud}</p>
+            <p>{elemento.solicitud && elemento.solicitud.trim()!='' ? elemento.solicitud : '-'}</p>
           </div>
         </div>
       </div>

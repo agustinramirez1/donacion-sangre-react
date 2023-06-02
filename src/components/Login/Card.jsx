@@ -7,7 +7,7 @@ const Card = ({ titulo, children, onSubmitHandler, icon, href, bgColor }) => {
         <div className="py-4 px-2">
             <div className="container shadow p-0 rounded-4">
                 <div className="row border-bottom bg-sky-blue rounded-top-4 mx-0">
-                    <div className={"p-0 text-white fs-4 " + (icon ? 'col-11': 'col-12')}>
+                    <div className={"p-0 text-white fs-4 " + (icon ? 'col-11 ps-5': 'col-12')}>
                         <p className='text-center m-0'>{titulo}</p>
                     </div>
                     {icon && <Link to={href} id="boton-plus"

@@ -7,7 +7,7 @@ const Titulo = ({  icon, href}) => {
     return (
       <>
         <div className="row border-bottom">
-          <div className="col-11 text-white fs-4" >
+          <div className="col-11 text-white fs-4 ps-5" >
             <span>Solicitudes</span>
           </div>
           {icon && <Link to={href} id="boton-plus"
