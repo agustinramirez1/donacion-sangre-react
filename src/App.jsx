@@ -1,22 +1,31 @@
 import './App.css'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
-import {Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 function App() {
 
   const navigate = useNavigate();
+  const location = useLocation().pathname;
 
   useEffect(() => {
-    // navigate('/solicitudes')
+    const token = localStorage.getItem('token')
+    if (token) {
+      if(location == '/login' || location == '/registro'){
+        navigate('/solicitudes')
+      }
+      console.log('token')
+    } else {
+      navigate('/login')
+    }
 
   }, [])
 
   return (
     <>
-        <Navbar />
+      <Navbar />
 
-        <Outlet />
+      <Outlet />
 
     </>
   )

@@ -2,7 +2,7 @@
 import ShareButton from './ShareButton'
 import DeleteButton from './DeleteButton'
 
-const Tarjeta = ({ elemento }) => {
+const Tarjeta = ({ elemento, solicitudes, setSolicitudes}) => {
 
   let tipo_sangre = ["A+", "A-", "B+", "B-", "O+", "O-", "AB-", "AB+"];
   let source = "./src/img/" + tipo_sangre[elemento.tipo_sangre - 1] + ".png";
@@ -13,7 +13,7 @@ const Tarjeta = ({ elemento }) => {
         <div className="d-flex justify-content-between align-items-center mb-3 border-bottom p-3">
           <p><strong>{elemento.nombre_apellido_donatario}</strong></p>
           <p className="fs-5">
-            <DeleteButton />
+            <DeleteButton id={elemento.id} solicitudes={solicitudes} setSolicitudes={setSolicitudes}/>
             <ShareButton />
           </p>
         </div>

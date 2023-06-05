@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Card from './Card'
+import Card from '../components/Login/Card'
 import Swal from 'sweetalert2';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -86,6 +86,9 @@ const Registro = () => {
             noError = false
         } else if (isEmpty(confirmar)) {
             Swal.fire({icon: 'error', text: 'Debe confirmar la contraseña'});
+            noError = false
+        } else if (confirmar !== contraseña) {
+            Swal.fire({icon: 'error', text: 'Las contraseñas no coinciden'});
             noError = false
         }
         return noError

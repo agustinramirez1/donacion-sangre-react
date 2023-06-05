@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import Card from "../Login/Card"
+import Card from "../components/Login/Card"
 import axios from "axios"
 import Swal from "sweetalert2"
 import { useNavigate } from "react-router-dom"

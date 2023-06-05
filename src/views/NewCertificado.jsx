@@ -1,7 +1,7 @@
 // import React from 'react'
 
 import axios from "axios";
-import Card from "../Login/Card"
+import Card from "../components/Login/Card"
 import { useEffect, useState } from "react";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";

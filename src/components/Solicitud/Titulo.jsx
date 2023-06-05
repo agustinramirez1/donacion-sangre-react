@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import FiltroSolicitud from './FiltroSolicitud'
 
-const Titulo = ({  icon, href}) => {
+const Titulo = ({  icon, href, setSolicitudes}) => {
 
     return (
       <>
@@ -15,7 +15,7 @@ const Titulo = ({  icon, href}) => {
             +
           </Link>}
         </div>
-        <FiltroSolicitud/>
+        <FiltroSolicitud setSolicitudes= {setSolicitudes}/>
       </>
 
     )

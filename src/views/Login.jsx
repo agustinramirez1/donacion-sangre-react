@@ -48,7 +48,13 @@ const Login = () => {
           navigate("/solicitudes")
           localStorage.setItem("token",response.data.token)
         })
-        .catch(error => console.log(error))
+        .catch((err) => {
+					// console.log(err)
+					let message = err.response?.data?.message;
+					if (message) {
+						Swal.fire({ icon: 'error', text: message })
+					}
+				});
     }
 
 

@@ -2,9 +2,8 @@
 import axios from 'axios'
 import Card from '../components/Login/Card'
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import EditPerfil from './EditPerfil';
 
 const Perfil = () => {
 
@@ -87,13 +86,13 @@ const Perfil = () => {
                             </p>
                         </div>
                         <div className="mb-3 text-center d-grid col-md-5 col-xl-4 mx-auto">
-                            <button type='submit' className="px-5 bg-sky-blue border-0" id="inicio-sesion" onClick={EditPerfil}>Editar Información</button>
+                            <Link to={'/edit-perfil'} className="btn btn-dark px-5 bg-sky-blue border-0" id="inicio-sesion" >Editar Información</Link>
                         </div>
                         <div className="mb-3 text-center d-grid col-md-5 col-xl-4 mx-auto">
-                            <button type='submit' className="px-5 bg-sky-blue border-0" id="inicio-sesion">Cambiar Contraseña</button>
+                            <Link to={'/change-pass'} className="btn btn-dark px-5 bg-sky-blue border-0" id="inicio-sesion">Cambiar Contraseña</Link>
                         </div>
                         <div className="mb-3 text-center d-grid col-md-5 col-xl-4 mx-auto">
-                            <button type='submit' className="px-5 bg-sky-blue border-0" id="inicio-sesion" onClick={logout}>Cerrar Sesión</button>
+                            <button className="btn btn-dark px-5 bg-sky-blue border-0" id="inicio-sesion" onClick={logout}>Cerrar Sesión</button>
                         </div>
                     </div>
                 </div>}

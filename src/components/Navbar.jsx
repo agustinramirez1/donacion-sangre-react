@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Botones from './Botones'
 
 const Navbar = () => {
@@ -10,6 +10,8 @@ const Navbar = () => {
     ]
 
     const navigate = useNavigate()
+
+    const token = localStorage.getItem('token')
 
     return (
         <nav className='navbar-tukp'>
@@ -23,7 +25,7 @@ const Navbar = () => {
                     <ul className='lista'>
                         {links && links.map((item, index) => (
                             <li key={index}>
-                                <a href={item.url} className='link'> {item.text}</a>
+                                <NavLink to={item.url} className='link'> {item.text}</NavLink>
                             </li>
                         ))}
                     </ul>
@@ -32,9 +34,9 @@ const Navbar = () => {
                 </div>
                 <div>
                     <div>
-                        <Botones color={"white"} text={"Registrarse"} background={'transparent'} border={'transparent'} icon={'bi bi-person-plus-fill'} iconPosition={'start'} onClick={()=>navigate('/registro')}/>
-                        <Botones color={"white"} text={"Perfil"} background={'transparent'} border={'transparent'} icon={'bi bi-person-fill'} iconPosition={'start'} onClick={()=>navigate('/perfil')}/>
-                        <Botones color={"skyblue"} text={"Login"} background={'white'} border={'transparent'} onClick={()=>navigate('/login')} icon={'bi bi-box-arrow-in-right'} iconPosition={'start'}/>
+                        {token && <Botones color={"white"} text={"Perfil"} background={'transparent'} border={'transparent'} icon={'bi bi-person-fill'} iconPosition={'start'} onClick={()=>navigate('/perfil')}/>}
+                        {!token && <Botones color={"white"} text={"Registrarse"} background={'transparent'} border={'transparent'} icon={'bi bi-person-plus-fill'} iconPosition={'start'} onClick={()=>navigate('/registro')}/>}
+                        {!token && <Botones color={"skyblue"} text={"Login"} background={'white'} border={'transparent'} onClick={()=>navigate('/login')} icon={'bi bi-box-arrow-in-right'} iconPosition={'start'}/>}
                     </div>
                 </div>
             </div>

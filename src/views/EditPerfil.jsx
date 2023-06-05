@@ -1,9 +1,10 @@
+import Card from "../components/Login/Card"
 
 
 
 const EditPerfil = () => {
   return (
-    <div>EditPerfil</div>
+    <Card titulo={'Editar Perfil'}></Card>
   )
 }
 
