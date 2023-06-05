@@ -20,6 +20,14 @@ const Registro = () => {
         return emailRegex.test(email);
     }
 
+    const [isValid, setIsValid] = useState(true);
+
+    const handleEmailChange = (event) => {
+        const { value } = event.target;
+        setEmail(value);
+        setIsValid(validateEmail(value));
+    };
+
     const handleChange = (event) => {
         const { id, value } = event.target;
         if (id == 'nombres') {
@@ -127,14 +135,6 @@ const Registro = () => {
                 })
           }
     }
-
-    const [isValid, setIsValid] = useState(true);
-
-    const handleEmailChange = (event) => {
-        const { value } = event.target;
-        setEmail(value);
-        setIsValid(validateEmail(value));
-    };
 
     const [show, setShow] = useState(false)
     const showPassword = () => {
