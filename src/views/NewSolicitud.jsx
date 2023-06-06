@@ -3,6 +3,7 @@ import Card from "../components/Login/Card"
 import axios from "axios"
 import Swal from "sweetalert2"
 import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const NewSolicitud = () => {
 
@@ -16,6 +17,8 @@ const NewSolicitud = () => {
     const [telefono, setTelefono] = useState('')
     const [descripcion, setDescripcion] = useState('')
     const [locales, setLocales] = useState(null)
+
+    const tokenRedux = useSelector(state => state.token)
 
     const handleChange = (event) => {
         const { id, value } = event.target;
@@ -95,8 +98,6 @@ const NewSolicitud = () => {
 
         if (emptyFields()) {
 
-            const access_token = localStorage.getItem('token')
-
             const data = {
                 solicitud: descripcion,
                 fecha_limite: fecha,
@@ -110,7 +111,7 @@ const NewSolicitud = () => {
 
             const config = {
                 headers: {
-                    'Authorization': `Bearer ${access_token}`
+                    'Authorization': `Bearer ${tokenRedux}`
                 }
             }
 
@@ -118,7 +119,7 @@ const NewSolicitud = () => {
                 .then((response) => {
                     console.log(response.data)
                     navigate("/solicitudes")
-                    Swal.fire({ icon: 'success', text: "Usuario Registrado Correctamente" })
+                    Swal.fire({ icon: 'success', text: "Solicitud Cargada Correctamente" })
                 }).catch((err) => {
                     console.log(err)
                     let message = err.response?.data?.errors;
@@ -142,7 +143,7 @@ const NewSolicitud = () => {
     }, [])
 
     return (
-        <Card titulo={'Nueva Solicitud'} onSubmitHandler={onSubmitHandler}>
+        <Card titulo={'Nueva Solicitud'} onSubmitHandler={onSubmitHandler} iconStart={'bi bi-arrow-left'} href={'/solicitudes'}>
             <div className="p-5 col-md-8 mx-auto row row-cols-2">
                 <div className='mb-3'>
                     <label htmlFor="nombres" className="form-label fs-4 fw-bold text-start">Nombre y Apellido</label>

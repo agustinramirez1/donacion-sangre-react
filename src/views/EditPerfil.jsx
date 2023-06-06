@@ -1,18 +1,34 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Card from "../components/Login/Card"
 import Swal from "sweetalert2"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import { useDispatch, useSelector } from "react-redux"
 
 
 
 const EditPerfil = () => {
 
+  const userRedux = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  
   const [nombres, setNombres] = useState('')
   const [apellidos, setApellidos] = useState('')
   const [sexo, setSexo] = useState('')
   const [fecNac, setFecNac] = useState('')
   const [email, setEmail] = useState('');
+  
+  useEffect(() => {
+    if(userRedux) {
+      // console.log(userRedux)
+      setNombres(userRedux.name)
+      setApellidos(userRedux.surname)
+      setSexo(userRedux.sexo)
+      setFecNac(userRedux.fecha_nacimiento)
+      setEmail(userRedux.email)
+    }
+  }, [userRedux])
+  
 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -80,12 +96,12 @@ const EditPerfil = () => {
   }
 
   const navigate = useNavigate();
+  const tokenRedux = useSelector(state => state.token)
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (event) => {
     event.preventDefault();
 
     if (emptyFields()) {
-      const access_token = localStorage.getItem('token')
 
       const data = {
         name: nombres,
@@ -97,13 +113,14 @@ const EditPerfil = () => {
 
       const config = {
         headers: {
-          'Authorization': `Bearer ${access_token}`
+          'Authorization': `Bearer ${tokenRedux}`
         }
       }
 
       axios.post("http://192.168.16.90:8000/api/editar-perfil", data, config)
         .then((response) => {
-          console.log(response.data)
+          // console.log(response.data)
+          dispatch({type: 'setUser', payload: response.data.user})
           navigate("/perfil")
           Swal.fire({ icon: 'success', text: "Perfil actualizado" })
         }).catch((err) => {
@@ -117,19 +134,19 @@ const EditPerfil = () => {
   }
 
   return (
-    <Card titulo={'Editar Perfil'} onSubmitHandler={onSubmitHandler}>
+    <Card titulo={'Editar Perfil'} onSubmitHandler={onSubmitHandler} iconStart={'bi bi-arrow-left'} href={'/perfil'}>
       <div className="p-5 col-md-8 mx-auto row row-cols-2">
         <div className='mb-3'>
           <label htmlFor="nombres" className="form-label fs-4 fw-bold text-start">Nombres</label>
-          <input type="text" className="form-control" id="nombres" onChange={handleChange} />
+          <input type="text" className="form-control" id="nombres" value={nombres} onChange={handleChange} />
         </div>
         <div className='mb-3'>
           <label htmlFor="apellidos" className="form-label fs-4 fw-bold text-start">Apellidos</label>
-          <input type="text" className="form-control" id="apellidos" onChange={handleChange} />
+          <input type="text" className="form-control" id="apellidos" value={apellidos} onChange={handleChange} />
         </div>
         <div className='mb-3'>
           <label className="form-label fs-4 fw-bold text-start">Sexo</label>
-          <select className="form-select" onChange={handleChange} id='sexo' defaultValue={''}>
+          <select className="form-select" onChange={handleChange} id='sexo' value={sexo}>
             <option value={''}>Seleccionar</option>
             <option value="F">Femenino</option>
             <option value="M">Masculino</option>
@@ -137,7 +154,7 @@ const EditPerfil = () => {
         </div>
         <div className='mb-3'>
           <label htmlFor="fecNac" className="form-label fs-4 fw-bold text-start">Fecha de Nacimiento</label>
-          <input type="date" className="form-control" id="fecNac" onChange={handleChange} />
+          <input type="date" className="form-control" id="fecNac" value={fecNac} onChange={handleChange} />
         </div>
         <div className='mb-3'>
           <label htmlFor="email" className="form-label fs-4 fw-bold text-start">Email</label>

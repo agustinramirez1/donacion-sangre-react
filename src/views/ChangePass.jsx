@@ -5,12 +5,15 @@ import Card from "../components/Login/Card"
 import Swal from "sweetalert2";
 import { useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const ChangePass = () => {
-
+    
     const [actual, setActual] = useState('')
     const [contraseña, setContraseña] = useState('')
     const [confirmar, setConfirmar] = useState('')
+    const tokenRedux = useSelector(state => state.token)
+    const navigate = useNavigate()
 
     const handleChange = (event) => {
         const { id, value } = event.target;
@@ -51,13 +54,11 @@ const ChangePass = () => {
         return noError
     }
 
-    const navigate = useNavigate()
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
 
         if (emptyFields()) {
-            const access_token = localStorage.getItem('token')
 
             const data = {
                 old_password: actual,
@@ -66,7 +67,7 @@ const ChangePass = () => {
 
             const config = {
                 headers: {
-                    'Authorization': `Bearer ${access_token}`
+                    'Authorization': `Bearer ${tokenRedux}`
                 }
             }
 
@@ -95,7 +96,7 @@ const ChangePass = () => {
         if (id == 'show3') setShow3(!show3)
     }
     return (
-        <Card titulo={'Cambiar Contraseña'} onSubmitHandler={onSubmitHandler}>
+        <Card titulo={'Cambiar Contraseña'} onSubmitHandler={onSubmitHandler} iconStart={'bi bi-arrow-left'} href={'/perfil'}>
             <div className="p-5 col-md-8 mx-auto">
                 <div className='mb-3'>
                     <label htmlFor="contraseña" className="form-label fs-4 fw-bold text-start">Contraseña Actual</label>

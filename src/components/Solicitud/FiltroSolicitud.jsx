@@ -1,18 +1,19 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import Swal from "sweetalert2"
 
 const FiltroSolicitud = ({ setSolicitudes }) => {
 
 	const [check, setCheck] = useState(false)
-	const access_token = localStorage.getItem('token')
+	const tokenRedux = useSelector(state => state.token)
 
 	useEffect(() => {
 
 		if (check) {
 			const config = {
 				headers: {
-					'Authorization': `Bearer ${access_token}`
+					'Authorization': `Bearer ${tokenRedux}`
 				}
 			}
 			axios.get("http://192.168.16.90:8000/api/solicitudes-protegido", config)

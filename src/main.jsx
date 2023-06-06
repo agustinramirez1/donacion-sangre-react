@@ -14,6 +14,9 @@ import NewSolicitud from './views/NewSolicitud.jsx'
 import ResetPassword from './views/ResetPassword.jsx'
 import EditPerfil from './views/EditPerfil.jsx'
 import ChangePass from './views/ChangePass.jsx'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistor, store } from './store/index.js'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,6 +40,10 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <RouterProvider router={router} />
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 )

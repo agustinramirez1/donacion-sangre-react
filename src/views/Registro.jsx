@@ -3,6 +3,7 @@ import Card from '../components/Login/Card'
 import Swal from 'sweetalert2';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 const Registro = () => {
 
@@ -14,13 +15,16 @@ const Registro = () => {
     const [email, setEmail] = useState('');
     const [contraseña, setContraseña] = useState('')
     const [confirmar, setConfirmar] = useState('')
+    const [isValid, setIsValid] = useState(true);
+    
+    const dispatch = useDispatch()
+    const navigate = useNavigate();
 
     const validateEmail = (email) => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return emailRegex.test(email);
     }
 
-    const [isValid, setIsValid] = useState(true);
 
     const handleEmailChange = (event) => {
         const { value } = event.target;
@@ -102,7 +106,6 @@ const Registro = () => {
         return noError
     }
 
-    const navigate = useNavigate();
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
@@ -121,9 +124,10 @@ const Registro = () => {
 
             axios.post("http://192.168.16.90:8000/api/registro", data)
                 .then((response) => {
-                    console.log(response.data)
+                    // console.log(response.data)
                     navigate("/solicitudes")
-                    localStorage.setItem("token",response.data.token)
+                    dispatch({type: 'setToken', payload: response.data.token})
+                    dispatch({type: 'setUser', payload: response.data.user})
                     Swal.fire({ icon: 'success', text: "Usuario Registrado Correctamente" })
                 }).catch((err) => {
                     console.log(err)

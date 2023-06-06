@@ -5,12 +5,17 @@ import Card from "../components/Login/Card"
 import { useEffect, useState } from "react";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const NewCertificado = () => {
-
+    
     const [locales, setLocales] = useState(null)
     const [fecha, setFecha] = useState('');
     const [centro, setCentro] = useState('');
+    
+    const tokenRedux = useSelector(state => state.token)
+    const navigate = useNavigate()
+    
 
     const handleChange = (event) => {
         const { id, value } = event.target;
@@ -42,13 +47,11 @@ const NewCertificado = () => {
         return noError
     }
 
-    const navigate = useNavigate()
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
 
         if (emptyFields()) {
-            const access_token = localStorage.getItem('token')
 
             const data = {
                 fecha_donacion: fecha,
@@ -57,7 +60,7 @@ const NewCertificado = () => {
 
             const config = {
                 headers: {
-                    'Authorization': `Bearer ${access_token}`
+                    'Authorization': `Bearer ${tokenRedux}`
                 }
             }
 
@@ -89,7 +92,7 @@ const NewCertificado = () => {
 
 
     return (
-        <Card titulo={'Generar Certificado'} onSubmitHandler={onSubmitHandler}>
+        <Card titulo={'Generar Certificado'} onSubmitHandler={onSubmitHandler} iconStart={'bi bi-arrow-left'} href={'/certificados'}>
             <div className="p-5 col-md-8 mx-auto">
                 <div className='mb-3'>
                     <label htmlFor="fecha" className="form-label fs-4 fw-bold text-start">Fecha de Donación:</label>

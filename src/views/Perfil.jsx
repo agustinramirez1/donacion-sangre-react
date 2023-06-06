@@ -4,16 +4,18 @@ import Card from '../components/Login/Card'
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Perfil = () => {
 
     const [perfil, setPerfil] = useState();
+    const dispatch = useDispatch()
 
-    const access_token = localStorage.getItem('token')
+    const tokenRedux = useSelector(state => state.token)
 
     const config = {
         headers: {
-            'Authorization': `Bearer ${access_token}`
+            'Authorization': `Bearer ${tokenRedux}`
         }
     }
 
@@ -33,7 +35,7 @@ const Perfil = () => {
             cancelButtonText: 'No'
         }).then((result) => {
             if (result.isConfirmed) {
-                localStorage.clear();
+                dispatch({type: 'logout'})
                 navigate('/login')
                 Swal.fire({
                     title: 'Sesion Cerrada!',
@@ -44,6 +46,7 @@ const Perfil = () => {
     }
 
     useEffect(() => {
+        // console.log('carga perfil')
         axios.get("http://192.168.16.90:8000/api/user", config)
             .then((response) => {
                // console.log(response.data)
@@ -52,7 +55,7 @@ const Perfil = () => {
     }, [])
 
     return (
-        <Card titulo={'Perfil'}>
+        <Card titulo={'Perfil'} iconStart={'bi bi-arrow-left'} href={'/solicitudes'}>
             {perfil &&
                 <div className="col">
                     <div>

@@ -6,12 +6,14 @@ import Card from "../components/Login/Card";
 import { useState } from "react";
 import Swal from 'sweetalert2';
 import axios from 'axios'
+import { useDispatch } from "react-redux";
 
 const Login = () => {
 
   const [email, setEmail] = useState('');
   const [contraseña, setContraseña] = useState('');
-  // const minPasswordLenght = 8;
+  
+  const dispatch = useDispatch()
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -44,9 +46,10 @@ const Login = () => {
     if (validateFields()) {
       axios.post("http://192.168.16.90:8000/api/login", {email, password:contraseña})
         .then((response) => {
-          console.log(response.data)
+          // console.log(response.data)
+          dispatch({type: 'setToken', payload: response.data.token})
+          dispatch({type: 'setUser', payload: response.data.user})
           navigate("/solicitudes")
-          localStorage.setItem("token",response.data.token)
         })
         .catch((err) => {
 					// console.log(err)

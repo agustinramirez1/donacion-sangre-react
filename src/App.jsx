@@ -2,24 +2,24 @@ import './App.css'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 function App() {
 
   const navigate = useNavigate();
   const location = useLocation().pathname;
+  const tokenRedux = useSelector(state => state.token)
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
+    if (tokenRedux) {
       if(location == '/login' || location == '/registro'){
         navigate('/solicitudes')
       }
-      console.log('token')
     } else {
       navigate('/login')
     }
 
-  }, [])
+  }, [tokenRedux])
 
   return (
     <>

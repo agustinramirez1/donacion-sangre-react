@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import Botones from './Botones'
+import { useSelector } from 'react-redux'
 
 const Navbar = () => {
 
@@ -11,7 +12,7 @@ const Navbar = () => {
 
     const navigate = useNavigate()
 
-    const token = localStorage.getItem('token')
+    const tokenRedux = useSelector(state => state.token)
 
     return (
         <nav className='navbar-tukp'>
@@ -34,9 +35,9 @@ const Navbar = () => {
                 </div>
                 <div>
                     <div>
-                        {token && <Botones color={"white"} text={"Perfil"} background={'transparent'} border={'transparent'} icon={'bi bi-person-fill'} iconPosition={'start'} onClick={()=>navigate('/perfil')}/>}
-                        {!token && <Botones color={"white"} text={"Registrarse"} background={'transparent'} border={'transparent'} icon={'bi bi-person-plus-fill'} iconPosition={'start'} onClick={()=>navigate('/registro')}/>}
-                        {!token && <Botones color={"skyblue"} text={"Login"} background={'white'} border={'transparent'} onClick={()=>navigate('/login')} icon={'bi bi-box-arrow-in-right'} iconPosition={'start'}/>}
+                        {tokenRedux && <Botones color={"white"} text={"Perfil"} background={'transparent'} border={'transparent'} icon={'bi bi-person-fill'} iconPosition={'start'} onClick={()=>navigate('/perfil')}/>}
+                        {!tokenRedux && <Botones color={"white"} text={"Registrarse"} background={'transparent'} border={'transparent'} icon={'bi bi-person-plus-fill'} iconPosition={'start'} onClick={()=>navigate('/registro')}/>}
+                        {!tokenRedux && <Botones color={"skyblue"} text={"Login"} background={'white'} border={'transparent'} onClick={()=>navigate('/login')} icon={'bi bi-box-arrow-in-right'} iconPosition={'start'}/>}
                     </div>
                 </div>
             </div>

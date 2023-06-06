@@ -1,11 +1,12 @@
 // import React from 'react'
 
 import axios from "axios"
+import { useSelector } from "react-redux"
 import Swal from "sweetalert2"
 
 const DeleteButton = ({id, solicitudes, setSolicitudes}) => {
 
-  const access_token = localStorage.getItem('token')
+  const tokenRedux = useSelector(state => state.token)
 
   const handleClick = () => {
     Swal.fire({
@@ -28,7 +29,7 @@ const DeleteButton = ({id, solicitudes, setSolicitudes}) => {
 
     const config = {
       headers: {
-        'Authorization': `Bearer ${access_token}`
+        'Authorization': `Bearer ${tokenRedux}`
       }
     }
   
@@ -53,7 +54,7 @@ const DeleteButton = ({id, solicitudes, setSolicitudes}) => {
   }
 
   return (
-    <i className="bi bi-trash mx-2 text-danger" onClick={handleClick}></i>
+    <i className="icon-solicitud bi bi-trash mx-2 text-danger" onClick={handleClick}></i>
   )
 }
 

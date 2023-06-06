@@ -26,6 +26,10 @@
   border-radius:0 inherit 0 0 !important;
   cursor: pointer;
 }
+#back-button:hover {
+  background: rgb(97, 192, 230);
+}
+
 
 .icon-plus:hover {
   background: rgb(97, 192, 230);
@@ -84,4 +88,9 @@
 .accordion-button:not(.collapsed) {
   background-color: skyblue;
   color: white;
+}
+
+
+.icon-solicitud{
+  cursor: pointer;
 }
